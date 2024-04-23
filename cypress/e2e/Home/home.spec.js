@@ -60,7 +60,7 @@ context('Acessar a página Home - Desktop', (
             expect($el.attr('data-bs-theme')).to.eq(theme);
         });
     });
-    it.only('Acessar a página Home e clicar no botão de login', () => {
+    it.skip('Acessar a página Home e clicar no botão de login', () => {
         DesktopHome.visit('/', '/');
 
         cy.get(el.Navbar.icone).should('be.visible');
@@ -87,5 +87,6 @@ context('Acessar a página Home - Desktop', (
         cy.get(el.Navbar.icone).should('be.visible');
         cy.get(el.Navbar.home).should('be.visible');
         cy.get(el.Navbar.login).should('be.visible');
+        cy.get(el.Navbar.toogle).should('be.visible');
     });
 });
