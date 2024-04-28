@@ -1,10 +1,4 @@
 const el = require('./elements').ELEMENTS;
 
-class DesktopHome {
-    visit(url, checkUrl) {
-        cy.visit(url);
-        cy.url().should('contain', checkUrl);
-    }
+export const DesktopHome = {    
 };
-
-export default new DesktopHome();

@@ -4,6 +4,8 @@ export const ELEMENTS ={
         home: '[data-cy="Home"]',
         login: '[data-cy="Login"]',
         toogle: '[data-cy="Toggle-Dark"]',
+        sunIcon: '[data-cy="Sun-Icon"]',
+        moonIcon: '[data-cy="Moon-Icon"]',
     },
     Home:{
         image: '[data-cy="Body-Image"]',

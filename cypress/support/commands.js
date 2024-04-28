@@ -24,6 +24,32 @@
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 
-Cypress.Commands.add('get-cy', (element) => {
-    cy.get(`[data-cy=${element}]`);
+// Cypress.Commands.add("Get-cy", (element) => {
+//   cy.get(`[data-cy=${element}]`);
+// });
+
+Cypress.Commands.add("VisitCheck", (url, checkUrl) => {
+  cy.visit(url);
+  cy.url().should("contain", checkUrl);
 });
+
+Cypress.Commands.add("SetGeoLocation", (latitude, longitude) => {
+  cy.window().then((win) => {
+    win.navigator.geolocation.getCurrentPosition = (cb) =>
+      cb({ coords: { latitude, longitude } });
+  });
+});
+
+Cypress.Commands.add(
+  "VisitSetGeolocation",
+  (url, checkUrl, latitude, longitude) => {
+    cy.visit(url, {
+      onBeforeLoad({ navigator }) {
+        cy.stub(navigator.geolocation, 'getCurrentPosition').callsArgWith(0, {
+          coords: { latitude, longitude },
+        });
+      },
+    });
+    cy.url().should("contain", checkUrl);
+  }
+);
