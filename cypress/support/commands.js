@@ -42,7 +42,7 @@ Cypress.Commands.add("SetGeoLocation", (latitude, longitude) => {
 
 Cypress.Commands.add(
   "VisitSetGeolocation",
-  (url, checkUrl, latitude, longitude) => {
+  (url, latitude, longitude) => {
     cy.visit(url, {
       onBeforeLoad({ navigator }) {
         cy.stub(navigator.geolocation, 'getCurrentPosition').callsArgWith(0, {
@@ -50,6 +50,6 @@ Cypress.Commands.add(
         });
       },
     });
-    cy.url().should("contain", checkUrl);
+    cy.url().should("contain", url);
   }
 );
